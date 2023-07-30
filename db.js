@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', false);
 
-// Replace 'mongodb://localhost/iot_simulation' with your MongoDB connection string
+//Replace 'mongodb://localhost/iot_simulation' with your MongoDB connection string
 mongoose.connect('mongodb://localhost/iot_simulation', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
