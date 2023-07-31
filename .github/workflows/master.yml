@@ -29,7 +29,7 @@ jobs:
 
       - name: Configure Docker to use the gcloud command-line tool as a credential helper
         run: |
-          gcloud auth configure-docker ${env.REGISTRY_NAME}.eu.gcr.io
+          gcloud auth configure-docker "${env.REGISTRY_NAME}"
 
       - name: Build and push Docker image
         run: |
