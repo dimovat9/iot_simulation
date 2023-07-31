@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-
-
 mongoose.set('strictQuery', false);
 
 //Replace 'mongodb://localhost/iot_simulation' with your MongoDB connection string
