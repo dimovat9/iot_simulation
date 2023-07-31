@@ -31,7 +31,7 @@ jobs:
         run: |
           gcloud auth configure-docker "$REGISTRY_NAME"
 
-      - name: Build and Push Docker image
+      - name: Build and Push Docker Image
         run: |
           docker build -t "$REGISTRY_NAME/$IMAGE_NAME:$IMAGE_TAG" .
           docker push "$REGISTRY_NAME/$IMAGE_NAME:$IMAGE_TAG"
