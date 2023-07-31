@@ -25,11 +25,11 @@ jobs:
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ env.PROJECT_ID }}
-          export_default_credentials: false  # Important: Set this to false
+          export_default_credentials: true
 
-      - name: Configure Docker to use the gcloud command-line tool as a credential helper
+      - name: Log in to Google Cloud Artifact Registry
         run: |
-          gcloud auth configure-docker "${REGISTRY_NAME}"
+          gcloud auth print-access-token | sudo docker login -u oauth2accesstoken --password-stdin "europe-west3-docker.pkg.dev"
 
       - name: Build and Push Docker image
         run: |
