@@ -10,7 +10,7 @@ env:
   REGION: europe-west3
   REGISTRY_NAME: europe-west3-docker.pkg.dev/steady-tracer-392814/iot
   IMAGE_NAME: appjs
-  IMAGE_TAG: ''
+  IMAGE_TAG: test
 
 jobs:
   build-and-push:
@@ -36,6 +36,6 @@ jobs:
 
       - name: Build and Push Docker image
         run: |
-          IMAGE_TAG=${{ steps.datetime.outputs.DATETIME }}
+          IMAGE_TAG=${{ env.IMAGE_TAG }}.${{ steps.datetime.outputs.DATETIME }}
           docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" .
           docker push "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}"
