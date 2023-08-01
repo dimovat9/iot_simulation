@@ -29,9 +29,13 @@ jobs:
 
       - name: Log in to Google Cloud Artifact Registry
         run: gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin "europe-west3-docker.pkg.dev"
+     
+      - name: Set DateTime as IMAGE_TAG
+        id: datetime
+        run: echo "::set-output name=DATETIME::$(date '+%Y%m%d%H%M%S')"
 
       - name: Build and Push Docker image
         run: |
-          IMAGE_TAG=${{ env.IMAGE_TAG }}-${{ steps.datetime.outputs.DATETIME }}
+          IMAGE_TAG=${{ steps.datetime.outputs.DATETIME }}
           docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" .
           docker push "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}"
