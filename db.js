@@ -2,13 +2,12 @@ const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', false);
 
-//Replace 'mongodb://localhost/iot_simulation' with your MongoDB connection string
-mongoose.connect('mongodb://localhost/iot_simulation', {
+// Replace 'mongodb://mongodb/iot_simulation' with the Kubernetes Service DNS name of MongoDB
+mongoose.connect('mongodb://mongodb/iot_simulation', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 30000, // Set a higher timeout (e.g., 30 seconds)
 });
-
 
 const temperatureSchema = new mongoose.Schema({
   temperature: {
