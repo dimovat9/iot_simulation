@@ -15,4 +15,5 @@ COPY . .
 EXPOSE 3000
 
 # Start the Node.js application
+CMD ["node", "temperatureSensor.js"]
 CMD ["node", "app.js"]
