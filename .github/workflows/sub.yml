@@ -1,9 +1,9 @@
-name: Build and Push Docker Image
+name: Subscribe to IoT Data
 
 on:
   push:
-    branches:
-      - master
+    paths:
+      - 'sub/**'  # Trigger the workflow on changes in the "sub" folder
 
 env:
   PROJECT_ID: steady-tracer-392814
