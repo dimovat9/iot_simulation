@@ -15,8 +15,6 @@ bigquery_client = bigquery.Client()
 # Define dataset and table names
 dataset_id = 'iot_dataset'
 table_id = 'temperature_table'
-
-# Get the table reference
 table_ref = bigquery_client.dataset(dataset_id).table(table_id)
 
 def callback(message):
