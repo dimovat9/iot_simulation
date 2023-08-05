@@ -1,9 +1,9 @@
-name: Build and Push Docker Image
+name: Publish IoT Data
 
 on:
   push:
-    branches:
-      - master
+    paths:
+      - 'pub/**'  # Trigger the workflow on changes in the "pub" folder
 
 env:
   PROJECT_ID: steady-tracer-392814
@@ -37,5 +37,5 @@ jobs:
       - name: Build and Push Docker image
         run: |
           IMAGE_TAG=${{ env.IMAGE_TAG }}.${{ steps.datetime.outputs.DATETIME }}
-          docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" .
+          docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" pub
           docker push "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}"
