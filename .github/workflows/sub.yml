@@ -1,0 +1,41 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  PROJECT_ID: steady-tracer-392814
+  REGION: europe-west3
+  REGISTRY_NAME: europe-west3-docker.pkg.dev/steady-tracer-392814/iot
+  IMAGE_NAME: sub
+  IMAGE_TAG: test
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ env.PROJECT_ID }}
+          export_default_credentials: true
+
+      - name: Log in to Google Cloud Artifact Registry
+        run: gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin "europe-west3-docker.pkg.dev"
+     
+      - name: Set DateTime as IMAGE_TAG
+        id: datetime
+        run: echo "::set-output name=DATETIME::$(date '+%Y%m%d%H%M%S')"
+
+      - name: Build and Push Docker image
+        run: |
+          IMAGE_TAG=${{ env.IMAGE_TAG }}.${{ steps.datetime.outputs.DATETIME }}
+          docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" .
+          docker push "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}"
