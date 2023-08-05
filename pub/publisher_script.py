@@ -1,6 +1,5 @@
 import time
 import random
-import os
 from google.cloud import pubsub_v1
 
 project_id = 'steady-tracer-392814'
