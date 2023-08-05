@@ -6,9 +6,6 @@ from google.cloud import pubsub_v1
 project_id = 'steady-tracer-392814'
 topic_id = 'temperature-sensor'
 
-# Obtain an access token
-access_token = os.popen('gcloud auth print-access-token --impersonate-service-account=pubsub-service-account@steady-tracer-392814.iam.gserviceaccount.com').read().strip()
-
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_id)
 
