@@ -8,7 +8,7 @@ topic_id = 'temperature-sensor'
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_id)
 
-print("Publishing a temperature:")
+print("Publishing a temperature: ")
 
 while True:
     temperature = random.uniform(20, 45)  # Generate a random temperature between 20 and 45 degrees Celsius
