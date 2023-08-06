@@ -1,10 +1,11 @@
 from google.cloud import pubsub_v1, bigquery
+import os
 
 # Create a SubscriberClient
 subscriber = pubsub_v1.SubscriberClient()
 
-project_id = 'steady-tracer-392814'
-subscription_id = 'temperature-sensor-sub'
+project_id = os.environ.get('project_id')
+subscription_id = os.environ.get('sub_id')
 
 # The subscription path
 subscription_path = f"projects/{project_id}/subscriptions/{subscription_id}"
@@ -13,8 +14,8 @@ subscription_path = f"projects/{project_id}/subscriptions/{subscription_id}"
 bigquery_client = bigquery.Client()
 
 # Define dataset and table names
-dataset_id = 'iot_dataset'
-table_id = 'temperature_table'
+dataset_id = os.environ.get('bq_dataset')
+table_id = os.environ.get('bq_table')
 table_ref = bigquery_client.dataset(dataset_id).table(table_id)
 
 def callback(message):

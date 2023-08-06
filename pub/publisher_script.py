@@ -1,9 +1,10 @@
 import time
 import random
 from google.cloud import pubsub_v1
+import os
 
-project_id = 'steady-tracer-392814'
-topic_id = 'temperature-sensor'
+project_id = os.environ.get('project_id')
+topic_id = os.environ.get('topic_id')
 
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_id)
