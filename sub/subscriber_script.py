@@ -21,9 +21,10 @@ table_ref = bigquery_client.dataset(dataset_id).table(table_id)
 def callback(message):
     data = message.data.decode("utf-8")
     temperature = float(data.split()[1][:-2])  # Extract temperature from the message
+    date= data.split()[2] +' ' + data.split()[3]
 
     rows_to_insert = [
-    {"temperature":temperature} ]
+    {"temperature":temperature,"date": date} ]
 
     errors = bigquery_client.insert_rows_json(
         table_ref, rows_to_insert, row_ids=[None] * len(rows_to_insert)
