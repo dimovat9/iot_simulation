@@ -8,7 +8,7 @@ subscriber = pubsub_v1.SubscriberClient()
 project_id = os.environ.get('project_id')
 subscription_id = os.environ.get('sub_alert_id')
 
-# The subscription path
+# The subscription path for the alert
 subscription_path = f"projects/{project_id}/subscriptions/{subscription_id}"
 
 
