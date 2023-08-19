@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy the Python script to the container
 COPY alert_subscriber_script.py /app/
+COPY send_to_slack.py /app/
 
 # Install the required dependencies
 RUN pip install --no-cache-dir google-cloud-pubsub

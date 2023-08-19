@@ -16,6 +16,7 @@ def callback(message):
     data = message.data.decode("utf-8")
     temperature = float(data.split()[1][:-2])  # Extract temperature from the message
     date= data.split()[2] +' ' + data.split()[3]
+    # Check temperature
     if (temperature > 35.00):
         sendMessage("Temeprature Alert","Current temperature: " + str(temperature) + " at " + date)
 
