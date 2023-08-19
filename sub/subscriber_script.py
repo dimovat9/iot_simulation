@@ -30,7 +30,7 @@ def callback(message):
         table_ref, rows_to_insert, row_ids=[None] * len(rows_to_insert)
     )  # Make an API request.
     if errors == []:
-        print("New rows have been added.")
+        print("New rows have been added")
     else:
         print("Encountered errors while inserting rows: {}".format(errors))
 
