@@ -10,7 +10,6 @@ subscription_id = os.environ.get('sub_id')
 # The subscription path
 subscription_path = f"projects/{project_id}/subscriptions/{subscription_id}"
 
-# Initialize BigQuery client
 bigquery_client = bigquery.Client()
 
 # Define dataset and table names
