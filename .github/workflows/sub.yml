@@ -3,7 +3,7 @@ name: Subscribe to IoT Data
 on:
   push:
     paths:
-      - 'sub/**'  # Trigger the workflow on changes in the "sub" folder
+      - 'sub/subscriber_script.py'  # Trigger the workflow on changes in the "sub" folder
 
 env:
   PROJECT_ID: steady-tracer-392814
