@@ -1,15 +1,15 @@
-name: Subscribe to IoT Data
+name: Send Alert from Subscriber
 
 on:
   push:
     paths:
-      - 'sub/subscriber_script.py'  # Trigger the workflow on changes in the "sub" folder
+      - 'sub/alert_subscriber_script.py'  # Trigger the workflow on changes in the "sub" folder
 
 env:
   PROJECT_ID: steady-tracer-392814
   REGION: europe-west3
   REGISTRY_NAME: europe-west3-docker.pkg.dev/steady-tracer-392814/iot
-  IMAGE_NAME: sub
+  IMAGE_NAME: alert
   IMAGE_TAG: test
 
 jobs:
@@ -37,5 +37,5 @@ jobs:
       - name: Build and Push Docker image
         run: |
           IMAGE_TAG=${{ env.IMAGE_TAG }}.${{ steps.datetime.outputs.DATETIME }}
-          docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" sub/Dockerfile
+          docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" sub/alert.Dockerfile
           docker push "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}"
