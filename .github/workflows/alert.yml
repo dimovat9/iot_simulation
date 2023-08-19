@@ -11,7 +11,6 @@ env:
   REGISTRY_NAME: europe-west3-docker.pkg.dev/steady-tracer-392814/iot
   IMAGE_NAME: alert
   IMAGE_TAG: test
-  DOCKERFILE_PATH: sub/alert.Dockerfile
 
 jobs:
   build-and-push:
@@ -38,5 +37,5 @@ jobs:
       - name: Build and Push Docker image
         run: |
           IMAGE_TAG=${{ env.IMAGE_TAG }}.${{ steps.datetime.outputs.DATETIME }}
-          docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" "${DOCKERFILE_PATH}"
+          docker build -t "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}" alert.Dockerfile
           docker push "${REGISTRY_NAME}/${IMAGE_NAME}:${IMAGE_TAG}"
