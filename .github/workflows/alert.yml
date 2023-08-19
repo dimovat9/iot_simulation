@@ -3,7 +3,7 @@ name: Send Alert from Subscriber
 on:
   push:
     paths:
-      - 'sub/alert_subscriber_script .py'  
+      - 'sub/alert_subscriber_script.py'  
 
 env:
   PROJECT_ID: steady-tracer-392814
