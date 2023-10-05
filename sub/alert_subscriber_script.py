@@ -22,7 +22,6 @@ def callback(message):
     # Acknowledge the message
     message.ack()
 
-
 # Subscribe to the subscription
 future = subscriber.subscribe(subscription_path, callback=callback)
 
