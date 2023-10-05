@@ -11,7 +11,6 @@ subscription_id = os.environ.get('sub_alert_id')
 # The subscription path for the alert
 subscription_path = f"projects/{project_id}/subscriptions/{subscription_id}"
 
-
 def callback(message):
     data = message.data.decode("utf-8")
     temperature = float(data.split()[1][:-2]) 
